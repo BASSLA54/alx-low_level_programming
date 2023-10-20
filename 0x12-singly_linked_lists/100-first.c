@@ -1,21 +1,13 @@
-	extern	printf		; the C function, to be called
+#include <stdio.h>
 
-	        section .data		; Data section, initialized variables
-msg:		db "Hello, Holberton", 0 ; C string needs 0
-fmt:	    	db "%s", 10, 0          ; The printf format, "\n",'0'
+void first(void) __attribute__ ((constructor));
 
-	        section .text		; Code section.
-
-	        global main		; the standard gcc entry point
-main:					; the program label for the entry point
-	        push    rbp		; set up stack frame, must be alligned
-
-		mov	rdi,fmt
-		mov	rsi,msg
-		mov	rax,0		; or can be  xor  rax,rax
-	        call    printf		; Call C function
-
-		pop	rbp		; restore stack
-
-		mov	rax,0		; normal, no error, return value
-		ret			; return
+/**
+ * first - prints a sentence before the main
+ * function is executed
+ */
+void first(void)
+{
+	printf("You're beat! and yet, you must allow,\n");
+	printf("I bore my house upon my back!\n");
+}
